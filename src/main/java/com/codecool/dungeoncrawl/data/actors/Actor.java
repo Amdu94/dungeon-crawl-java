@@ -20,6 +20,8 @@ public abstract class Actor implements Drawable {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
+        }else if((nextCell.getType() == CellType.CLOSEDDOOR && cell.getActor().isHasKey())){
+            nextCell.setType(CellType.OPENEDDOOR);
         }
     }
 
