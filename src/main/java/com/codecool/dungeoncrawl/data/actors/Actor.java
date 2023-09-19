@@ -7,7 +7,10 @@ import com.codecool.dungeoncrawl.data.Drawable;
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
+    private int strength = 6;
     private boolean hasKey = false;
+
+
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -22,12 +25,39 @@ public abstract class Actor implements Drawable {
             cell = nextCell;
         }else if((nextCell.getType() == CellType.CLOSEDDOOR && cell.getActor().isHasKey())){
             nextCell.setType(CellType.OPENEDDOOR);
+        }else if(nextCell.getActor() != null){
+            if (cell.getActor() instanceof Player) {
+                this.fightMonster(nextCell.getActor());
+                System.out.println(this.getHealth());
+            }
+        }
+    }
+
+    private void fightMonster(Actor actor) {
+        actor.setHealth(actor.getHealth() - this.getStrength());
+        if (actor.getHealth() > 0) {
+            this.setHealth(this.getHealth() - actor.getStrength());
+        } else {
+            actor.getCell().setActor(null);
         }
     }
 
     public int getHealth() {
         return health;
     }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
 
     public Cell getCell() {
         return cell;
