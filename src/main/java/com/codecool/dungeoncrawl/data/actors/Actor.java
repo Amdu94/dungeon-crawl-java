@@ -8,7 +8,7 @@ public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 10;
     private int strength = 6;
-    private boolean hasKey = false;
+    private boolean hasKey = true;
 
 
 
@@ -17,29 +17,53 @@ public abstract class Actor implements Drawable {
         this.cell.setActor(this);
     }
 
-    public void move(int dx, int dy) {
-        Cell nextCell = cell.getNeighbor(dx, dy);
-        if((nextCell.getType() == CellType.KEY || nextCell.getType() == CellType.SWORD || nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.OPENEDDOOR) && nextCell.getActor() == null) {
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
-        }else if((nextCell.getType() == CellType.CLOSEDDOOR && cell.getActor().isHasKey())){
-            nextCell.setType(CellType.OPENEDDOOR);
-        }else if(nextCell.getActor() != null){
-            if (cell.getActor() instanceof Player) {
-                this.fightMonster(nextCell.getActor());
-                System.out.println(this.getHealth());
+//    public void move(int dx, int dy) {
+//        Cell nextCell = cell.getNeighbor(dx, dy);
+//        if((nextCell.getType() == CellType.KEY || nextCell.getType() == CellType.SWORD || nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.OPENEDDOOR) && nextCell.getActor() == null) {
+//            cell.setActor(null);
+//            nextCell.setActor(this);
+//            cell = nextCell;
+//        }else if((nextCell.getType() == CellType.CLOSEDDOOR && cell.getActor().isHasKey())){
+//            nextCell.setType(CellType.OPENEDDOOR);
+//        }else if(nextCell.getActor() != null){
+//            if (cell.getActor() instanceof Player) {
+//                this.fightMonster(nextCell.getActor());
+//                System.out.println(this.getHealth());
+//            }
+//        }
+//    }
+
+        public void move(int dx, int dy) {
+            Cell nextCell = cell.getNeighbor(dx, dy);
+            if ((nextCell.getType() == CellType.KEY || nextCell.getType() == CellType.SWORD || nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.OPENEDDOOR) && nextCell.getActor() == null) {
+                cell.setActor(null);
+                nextCell.setActor(this);
+                cell = nextCell;
+            } else if ((nextCell.getType() == CellType.CLOSEDDOOR && cell.getActor().isHasKey())) {
+                typeOfCell(nextCell, dx, dy);
+            } else if (nextCell.getActor() != null) {
+                fightMonster(nextCell);
             }
         }
+
+    private void typeOfCell( Cell cell, int dx, int dy){
+            cell.setType(CellType.OPENEDDOOR);
     }
 
-    private void fightMonster(Actor actor) {
+    private void healthAfterFight(Actor actor) {
         actor.setHealth(actor.getHealth() - this.getStrength());
         if (actor.getHealth() > 0) {
             this.setHealth(this.getHealth() - actor.getStrength());
         } else {
             actor.getCell().setActor(null);
         }
+    }
+
+    private void fightMonster(Cell nextCell){
+        if (cell.getActor() instanceof Player) {
+                this.healthAfterFight(nextCell.getActor());
+                System.out.println(this.getHealth());
+            }
     }
 
     public int getHealth() {
