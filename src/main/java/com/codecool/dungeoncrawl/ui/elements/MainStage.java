@@ -29,4 +29,8 @@ public class MainStage {
     public void setHealthLabelText(String text) {
         this.statusPane.setHealthValue(text);
     }
+
+    public void setStrengthLabelText(String text) {
+        this.statusPane.setStrengthValue(text);
+    }
 }
