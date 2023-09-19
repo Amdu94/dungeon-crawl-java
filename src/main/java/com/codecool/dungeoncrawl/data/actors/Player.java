@@ -22,8 +22,9 @@ public class Player extends Actor {
 
         if (nextCell != null && nextCell.hasItem()) {
             Item item = nextCell.getItem();
+            setHasKey(true);
             nextCell.removeItem();
-            System.out.println(item);
+            System.out.println("Picked up: " + item);
         }
     }
 
