@@ -5,11 +5,9 @@ import com.codecool.dungeoncrawl.data.Drawable;
 
 public abstract class Item implements Drawable {
     private Cell cell;
-    private final String name;
 
-    public Item(Cell cell, String name) {
+    public Item(Cell cell) {
         this.cell = cell;
-        this.name = name;
     }
 
     public Cell getCell() {
@@ -20,7 +18,4 @@ public abstract class Item implements Drawable {
         this.cell = cell;
     }
 
-    public String getName() {
-        return name;
-    }
 }
