@@ -10,6 +10,8 @@ public class Player extends Actor {
         super(cell);
         this.dx = 0;
         this.dy = 0;
+        this.setStrength(5);
+        this.setHealth(50);
     }
 
     public String getTileName() {

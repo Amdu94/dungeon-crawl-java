@@ -11,11 +11,15 @@ public class StatusPane {
     private GridPane ui;
     private Label healthTextLabel;
     private Label healthValueLabel;
+    private Label strengthTextLabel;
+    private Label strengthValueLabel;
 
     public StatusPane() {
         ui = new GridPane();
         healthTextLabel = new Label("Health: ");
         healthValueLabel = new Label();
+        strengthTextLabel = new Label("Strength: ");
+        strengthValueLabel = new Label();
     }
 
     public BorderPane build() {
@@ -25,6 +29,9 @@ public class StatusPane {
 
         ui.add(healthTextLabel, 0, 0);
         ui.add(healthValueLabel, 1, 0);
+        ui.add(strengthTextLabel, 0, 1);
+        ui.add(strengthValueLabel,1, 1);
+
 
         BorderPane borderPane = new BorderPane();
         borderPane.setRight(ui);
@@ -33,5 +40,9 @@ public class StatusPane {
 
     public void setHealthValue(String text) {
         healthValueLabel.setText(text);
+    }
+
+    public void setStrengthValue(String text) {
+        strengthValueLabel.setText(text);
     }
 }
