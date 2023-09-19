@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
 import com.codecool.dungeoncrawl.ui.keyeventhandler.KeyHandler;
@@ -11,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.Random;
 import java.util.Set;
 
 public class UI {
@@ -41,10 +43,13 @@ public class UI {
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
+        monsterMove();
+        resetMonsterMove();
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
         logic.getMap().getPlayer().pickUpItem();
+
         refresh();
     }
 
@@ -66,4 +71,40 @@ public class UI {
         mainStage.setHealthLabelText(logic.getPlayerHealth());
         mainStage.setStrengthLabelText(logic.getPlayerStrength());
     }
+
+    private void monsterMove() {
+        for (int x = 0; x < logic.getMapWidth(); x++) {
+            for (int y = 0; y < logic.getMapHeight(); y++) {
+                Cell cell = logic.getCell(x, y);
+                if (cell.getActor() instanceof Skeleton) {
+                    if(cell.getActor().isCanMove()) {
+                        Random r = new Random();
+                        int direction = r.nextInt(2);
+                        int upOrDown = r.nextInt(2);
+                        if (direction == 0) {
+                            y = 0;
+                            x = (upOrDown == 0) ? -1 : 1;
+                        } else {
+                            x = 0;
+                            y = (upOrDown == 0) ? -1 : 1;
+                        }
+                        cell.getActor().setCanMove(false);
+                        cell.getActor().move(x, y);
+                    }
+                }
+            }
+        }
+    }
+
+    private void resetMonsterMove() {
+        for (int x = 0; x < logic.getMapWidth(); x++) {
+            for (int y = 0; y < logic.getMapHeight(); y++) {
+                Cell cell = logic.getCell(x, y);
+                if (cell.getActor() instanceof Skeleton) {
+                    cell.getActor().setCanMove(true);
+                }
+            }
+        }
+    }
+
 }
