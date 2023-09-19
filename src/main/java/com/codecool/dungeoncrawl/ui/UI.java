@@ -43,8 +43,7 @@ public class UI {
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
-        monsterMove();
-        resetMonsterMove();
+        skeletonMove();
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
@@ -72,39 +71,38 @@ public class UI {
         mainStage.setStrengthLabelText(logic.getPlayerStrength());
     }
 
-    private void monsterMove() {
+
+    private void skeletonMove(String direction, Cell cell) {
+        switch (direction) {
+            case "UP":
+                logic.getCell(cell.getX(), cell.getY()).getActor().move(0, -1);
+                break;
+            case "DOWN":
+                logic.getCell(cell.getX(), cell.getY()).getActor().move(0, 1);
+                break;
+            case "LEFT":
+                logic.getCell(cell.getX(), cell.getY()).getActor().move(-1, 0);
+                break;
+            case "RIGHT":
+                logic.getCell(cell.getX(), cell.getY()).getActor().move(1, 0);
+                break;
+        }
+    }
+
+    private void skeletonMove() {
+        String[] directions = {"UP", "DOWN", "LEFT", "RIGHT"};
+        Random random = new Random();
+
         for (int x = 0; x < logic.getMapWidth(); x++) {
             for (int y = 0; y < logic.getMapHeight(); y++) {
                 Cell cell = logic.getCell(x, y);
                 if (cell.getActor() instanceof Skeleton) {
-                    if(cell.getActor().isCanMove()) {
-                        Random r = new Random();
-                        int direction = r.nextInt(2);
-                        int upOrDown = r.nextInt(2);
-                        if (direction == 0) {
-                            y = 0;
-                            x = (upOrDown == 0) ? -1 : 1;
-                        } else {
-                            x = 0;
-                            y = (upOrDown == 0) ? -1 : 1;
-                        }
-                        cell.getActor().setCanMove(false);
-                        cell.getActor().move(x, y);
-                    }
+                    String direction = directions[random.nextInt(4)];
+                    skeletonMove(direction, cell);
                 }
             }
         }
     }
 
-    private void resetMonsterMove() {
-        for (int x = 0; x < logic.getMapWidth(); x++) {
-            for (int y = 0; y < logic.getMapHeight(); y++) {
-                Cell cell = logic.getCell(x, y);
-                if (cell.getActor() instanceof Skeleton) {
-                    cell.getActor().setCanMove(true);
-                }
-            }
-        }
-    }
 
 }
