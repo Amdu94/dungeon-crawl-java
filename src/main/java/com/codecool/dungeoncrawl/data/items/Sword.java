@@ -2,18 +2,18 @@ package com.codecool.dungeoncrawl.data.items;
 
 import com.codecool.dungeoncrawl.data.Cell;
 
-public class Key extends Item{
-    public Key(Cell cell) {
+public class Sword extends Item{
+    public Sword(Cell cell) {
         super(cell);
     }
 
     @Override
     public String getTileName() {
-        return "key";
+        return "sword";
     }
 
     @Override
     public String toString() {
-        return "Key";
+        return "Sword";
     }
 }
