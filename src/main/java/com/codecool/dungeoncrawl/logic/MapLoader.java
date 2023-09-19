@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.GameMap;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
+import com.codecool.dungeoncrawl.data.items.Key;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -36,6 +37,7 @@ public class MapLoader {
                             break;
                         case 'k':
                             cell.setType(CellType.KEY);
+                            new Key(cell, "Key");
                             break;
                         case 'w':
                             cell.setType(CellType.SWORD);
