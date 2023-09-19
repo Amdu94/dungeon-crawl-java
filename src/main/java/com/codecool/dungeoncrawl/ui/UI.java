@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.ui;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
 import com.codecool.dungeoncrawl.ui.keyeventhandler.KeyHandler;
@@ -11,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.Random;
 import java.util.Set;
 
 public class UI {
@@ -41,10 +43,12 @@ public class UI {
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
+        skeletonMove();
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
         logic.getMap().getPlayer().pickUpItem();
+
         refresh();
     }
 
@@ -66,4 +70,39 @@ public class UI {
         mainStage.setHealthLabelText(logic.getPlayerHealth());
         mainStage.setStrengthLabelText(logic.getPlayerStrength());
     }
+
+
+    private void skeletonMove(String direction, Cell cell) {
+        switch (direction) {
+            case "UP":
+                logic.getCell(cell.getX(), cell.getY()).getActor().move(0, -1);
+                break;
+            case "DOWN":
+                logic.getCell(cell.getX(), cell.getY()).getActor().move(0, 1);
+                break;
+            case "LEFT":
+                logic.getCell(cell.getX(), cell.getY()).getActor().move(-1, 0);
+                break;
+            case "RIGHT":
+                logic.getCell(cell.getX(), cell.getY()).getActor().move(1, 0);
+                break;
+        }
+    }
+
+    private void skeletonMove() {
+        String[] directions = {"UP", "DOWN", "LEFT", "RIGHT"};
+        Random random = new Random();
+
+        for (int x = 0; x < logic.getMapWidth(); x++) {
+            for (int y = 0; y < logic.getMapHeight(); y++) {
+                Cell cell = logic.getCell(x, y);
+                if (cell.getActor() instanceof Skeleton) {
+                    String direction = directions[random.nextInt(4)];
+                    skeletonMove(direction, cell);
+                }
+            }
+        }
+    }
+
+
 }

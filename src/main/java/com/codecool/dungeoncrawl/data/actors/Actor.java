@@ -9,6 +9,9 @@ public abstract class Actor implements Drawable {
     private int health;
     private int strength;
     private boolean hasKey = false;
+    private boolean canMove;
+
+
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -82,5 +85,13 @@ public abstract class Actor implements Drawable {
 
     public boolean isHasKey() {
         return hasKey;
+    }
+
+    public boolean isCanMove() {
+        return canMove;
+    }
+
+    public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
     }
 }
