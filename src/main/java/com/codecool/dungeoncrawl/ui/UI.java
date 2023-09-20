@@ -8,6 +8,7 @@ import com.codecool.dungeoncrawl.ui.keyeventhandler.KeyHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -43,11 +44,15 @@ public class UI {
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
-        skeletonMove();
+        if(keyEvent.getCode() == KeyCode.DOWN || keyEvent.getCode() == KeyCode.LEFT
+            ||keyEvent.getCode() == KeyCode.UP || keyEvent.getCode() == KeyCode.RIGHT){
+            skeletonMove();
+        }
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
         logic.getMap().getPlayer().pickUpItem();
+
 
         refresh();
     }
@@ -69,6 +74,7 @@ public class UI {
         }
         mainStage.setHealthLabelText(logic.getPlayerHealth());
         mainStage.setStrengthLabelText(logic.getPlayerStrength());
+        mainStage.setInventoryLabelText(logic.getInventory());
     }
 
 
