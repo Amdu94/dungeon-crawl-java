@@ -12,9 +12,7 @@ public abstract class Actor implements Drawable {
     private int health;
     private int strength;
     private boolean hasKey = false;
-
-
-
+    private boolean hasCan = false;
 
 
     public Actor(Cell cell) {
@@ -30,6 +28,8 @@ public abstract class Actor implements Drawable {
             cell = nextCell;
         } else if ((nextCell.getType() == CellType.CLOSEDDOOR && cell.getActor().isHasKey())) {
             openDoor(nextCell);
+        } else if ((nextCell.getType() == CellType.FIRE && cell.getActor().isHasCan())) {
+            putOutFire(nextCell);
         } else if (nextCell.getActor() != null) {
             fightMonster(nextCell);
         }
@@ -37,6 +37,9 @@ public abstract class Actor implements Drawable {
 
     private void openDoor( Cell cell){
         cell.setType(CellType.OPENEDDOOR);
+    }
+    private void putOutFire( Cell cell){
+        cell.setType(CellType.FLOOR);
     }
 
     private void healthAfterFight(Actor actor) {
@@ -91,5 +94,11 @@ public abstract class Actor implements Drawable {
         return hasKey;
     }
 
+    public void setHasCan(boolean hasCan) {
+        this.hasCan = hasCan;
+    }
 
+    public boolean isHasCan() {
+        return hasCan;
+    }
 }
