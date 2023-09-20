@@ -5,11 +5,12 @@ import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.items.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player extends Actor {
     private int dx;
     private int dy;
-    private ArrayList<Item> inventory = new ArrayList<>();
+    private List<Item> inventory = new ArrayList<>();
     public Player(Cell cell) {
         super(cell);
         this.dx = 0;
@@ -22,7 +23,7 @@ public class Player extends Actor {
         return "player";
     }
 
-    public ArrayList<Item> getInventory() {
+    public List<Item> getInventory() {
         return inventory;
     }
 
