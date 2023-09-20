@@ -33,4 +33,8 @@ public class MainStage {
     public void setStrengthLabelText(String text) {
         this.statusPane.setStrengthValue(text);
     }
+
+    public void setInventoryLabelText(String text) {
+        this.statusPane.setInventoryValue(text);
+    }
 }

@@ -3,13 +3,17 @@ package com.codecool.dungeoncrawl.data.actors;
 import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.Drawable;
+import com.codecool.dungeoncrawl.data.items.Item;
+
+import java.util.ArrayList;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health;
     private int strength;
     private boolean hasKey = false;
-    private boolean canMove;
+
+
 
 
 
@@ -87,11 +91,5 @@ public abstract class Actor implements Drawable {
         return hasKey;
     }
 
-    public boolean isCanMove() {
-        return canMove;
-    }
 
-    public void setCanMove(boolean canMove) {
-        this.canMove = canMove;
-    }
 }
