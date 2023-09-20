@@ -28,14 +28,14 @@ public abstract class Actor implements Drawable {
             cell = nextCell;
         } else if ((nextCell.getType() == CellType.CLOSEDDOOR && cell.getActor().isHasKey())) {
             openDoor(nextCell);
-        } else if ((nextCell.getType() == CellType.FIRE)) {
+        } else if ((nextCell.getType() == CellType.FIRE) && !cell.getActor().isHasCan()) {
             setHealth(getHealth() - 10);
-            if (cell.getActor().isHasCan()) {
-                putOutFire(nextCell);
-            }
+        } else if (cell.getActor().isHasCan()) {
+            putOutFire(nextCell);
         } else if (nextCell.getActor() != null) {
             fightMonster(nextCell);
         }
+
     }
 
     private void openDoor(Cell cell) {
