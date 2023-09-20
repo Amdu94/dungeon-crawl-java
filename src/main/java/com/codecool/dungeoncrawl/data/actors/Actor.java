@@ -28,17 +28,21 @@ public abstract class Actor implements Drawable {
             cell = nextCell;
         } else if ((nextCell.getType() == CellType.CLOSEDDOOR && cell.getActor().isHasKey())) {
             openDoor(nextCell);
-        } else if ((nextCell.getType() == CellType.FIRE && cell.getActor().isHasCan())) {
-            putOutFire(nextCell);
+        } else if ((nextCell.getType() == CellType.FIRE)) {
+            setHealth(getHealth() - 10);
+            if (cell.getActor().isHasCan()) {
+                putOutFire(nextCell);
+            }
         } else if (nextCell.getActor() != null) {
             fightMonster(nextCell);
         }
     }
 
-    private void openDoor( Cell cell){
+    private void openDoor(Cell cell) {
         cell.setType(CellType.OPENEDDOOR);
     }
-    private void putOutFire( Cell cell){
+
+    private void putOutFire(Cell cell) {
         cell.setType(CellType.FLOOR);
     }
 
@@ -51,7 +55,7 @@ public abstract class Actor implements Drawable {
         }
     }
 
-    private void fightMonster(Cell nextCell){
+    private void fightMonster(Cell nextCell) {
         if (cell.getActor() instanceof Player) {
             this.healthAfterFight(nextCell.getActor());
             System.out.println(this.getHealth());
