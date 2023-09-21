@@ -4,10 +4,12 @@ import com.codecool.dungeoncrawl.data.Cell;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.GameLogic;
 import com.codecool.dungeoncrawl.ui.elements.MainStage;
+import com.codecool.dungeoncrawl.ui.elements.StatusPane;
 import com.codecool.dungeoncrawl.ui.keyeventhandler.KeyHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
@@ -133,7 +135,11 @@ public class UI {
     }
 
 
+    public void restartGame(Button button) {
+            statusPane.setButton(button);
+            button.setText("Restart");
 
+    }
 
 
 
