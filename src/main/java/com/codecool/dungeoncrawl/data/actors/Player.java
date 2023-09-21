@@ -1,14 +1,16 @@
 package com.codecool.dungeoncrawl.data.actors;
 
 import com.codecool.dungeoncrawl.data.Cell;
+import com.codecool.dungeoncrawl.data.CellType;
 import com.codecool.dungeoncrawl.data.items.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player extends Actor {
     private int dx;
     private int dy;
-    private ArrayList<Item> inventory = new ArrayList<>();
+    private List<Item> inventory = new ArrayList<>();
     public Player(Cell cell) {
         super(cell);
         this.dx = 0;
@@ -21,7 +23,7 @@ public class Player extends Actor {
         return "player";
     }
 
-    public ArrayList<Item> getInventory() {
+    public List<Item> getInventory() {
         return inventory;
     }
 
@@ -32,7 +34,11 @@ public class Player extends Actor {
         if (nextCell != null && nextCell.hasItem()) {
             Item item = nextCell.getItem();
             this.inventory.add(item);
-            setHasKey(true);
+            if (item.getTileName() == CellType.CAN.getTileName()){
+                setHasCan(true);
+            } else if (item.getTileName() == CellType.KEY.getTileName()) {
+                setHasKey(true);
+            }
             nextCell.removeItem();
             System.out.println("Picked up: " + item);
             System.out.println(inventory);

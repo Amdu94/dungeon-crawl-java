@@ -12,9 +12,7 @@ public abstract class Actor implements Drawable {
     private int health;
     private int strength;
     private boolean hasKey = false;
-
-
-
+    private boolean hasCan = false;
 
 
     public Actor(Cell cell) {
@@ -46,7 +44,6 @@ public abstract class Actor implements Drawable {
             nextCell.setActor(this);
             cell = nextCell;
         }
-
         // player move
         if (cell.isPlayer() && nextCell.isAvailable() && !nextCell.isEnemy()) {
             cell.setActor(null);
@@ -57,6 +54,20 @@ public abstract class Actor implements Drawable {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
+        } else if ((nextCell.getType() == CellType.FIRE) && !cell.getActor().isHasCan()) {
+            setHealth(getHealth() - 10);
+        } else if (cell.getActor().isHasCan()) {
+            putOutFire(nextCell);
+        }
+    }
+
+    private void openDoor(Cell cell) {
+        cell.setType(CellType.OPENEDDOOR);
+    }
+
+    private void putOutFire(Cell cell) {
+        if (cell.getType() == CellType.FIRE){
+            cell.setType(CellType.FLOOR);
         }
     }
 
@@ -80,11 +91,6 @@ public abstract class Actor implements Drawable {
         } else if (this.health <= 0 ){
             cell.setActor(null);
         }
-    }
-
-
-    private void openDoor( Cell cell){
-        cell.setType(CellType.OPENEDDOOR);
     }
 
     public int getHealth() {
@@ -123,5 +129,11 @@ public abstract class Actor implements Drawable {
         return hasKey;
     }
 
+    public void setHasCan(boolean hasCan) {
+        this.hasCan = hasCan;
+    }
 
+    public boolean isHasCan() {
+        return hasCan;
+    }
 }
