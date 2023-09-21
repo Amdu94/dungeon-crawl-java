@@ -38,11 +38,12 @@ public class Player extends Actor {
                 setHasCan(true);
             } else if (item.getTileName() == CellType.KEY.getTileName()) {
                 setHasKey(true);
+            } else if (item.getTileName() == CellType.SWORD.getTileName()) {
+                setStrength(getStrength() + 20);
             }
             nextCell.removeItem();
             System.out.println("Picked up: " + item);
             System.out.println(inventory);
         }
     }
-
 }

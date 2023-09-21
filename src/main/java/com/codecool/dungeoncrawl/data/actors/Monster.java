@@ -7,7 +7,7 @@ public class Monster extends Actor{
     public Monster(Cell cell) {
         super(cell);
         this.setStrength(20);
-        this.setHealth(100);
+        this.setHealth(50);
     }
     @Override
     public String getTileName() {
