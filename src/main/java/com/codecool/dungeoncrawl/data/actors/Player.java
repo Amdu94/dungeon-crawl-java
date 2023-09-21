@@ -40,6 +40,9 @@ public class Player extends Actor {
                 setHasKey(true);
             } else if (item.getTileName() == CellType.SWORD.getTileName()) {
                 setStrength(getStrength() + 20);
+            } else if (item.getTileName() == CellType.POTION.getTileName()) {
+                setHealth(getHealth() + 20);
+                inventory.remove(item);
             }
             nextCell.removeItem();
             System.out.println("Picked up: " + item);
