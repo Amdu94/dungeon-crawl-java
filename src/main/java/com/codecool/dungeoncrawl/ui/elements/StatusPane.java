@@ -36,7 +36,7 @@ public class StatusPane {
         ui.add(strengthTextLabel, 0, 1);
         ui.add(strengthValueLabel,1, 1);
         ui.add(inventoryTextLabel, 0, 2);
-        ui.add(inventoryValueLabel, 1, 3);
+        ui.add(inventoryValueLabel, 1, 2);
 
 
         BorderPane borderPane = new BorderPane();

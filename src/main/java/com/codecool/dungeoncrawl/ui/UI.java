@@ -13,8 +13,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+
+import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class UI {
     private Canvas canvas;
@@ -23,6 +27,7 @@ public class UI {
     private MainStage mainStage;
     private GameLogic logic;
     private Set<KeyHandler> keyHandlers;
+    private Timer skeletonTimer;
 
 
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
@@ -33,6 +38,8 @@ public class UI {
         this.context = canvas.getGraphicsContext2D();
         this.mainStage = new MainStage(canvas);
         this.keyHandlers = keyHandlers;
+        this.skeletonTimer = new Timer();
+        scheduleSkeletonMoves();
     }
 
     public void setUpPain(Stage primaryStage) {
@@ -44,20 +51,18 @@ public class UI {
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
-        if(keyEvent.getCode() == KeyCode.DOWN || keyEvent.getCode() == KeyCode.LEFT
-            ||keyEvent.getCode() == KeyCode.UP || keyEvent.getCode() == KeyCode.RIGHT){
-            skeletonMove();
-        }
         for (KeyHandler keyHandler : keyHandlers) {
             keyHandler.perform(keyEvent, logic.getMap());
         }
         logic.getMap().getPlayer().pickUpItem();
-
-
         refresh();
     }
 
     public void refresh() {
+        if(logic.getMap().getPlayer().getHealth() <=0 ) {
+            restartGame();
+            return;
+        }
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < logic.getMapWidth(); x++) {
@@ -77,23 +82,33 @@ public class UI {
         mainStage.setInventoryLabelText(logic.getInventory());
     }
 
+    public void restartGame() {
+        logic.resetGame();
+        refresh();
+    }
 
     private void skeletonMove(String direction, Cell cell) {
+        int dx = 0, dy = 0;
+
         switch (direction) {
             case "UP":
-                logic.getCell(cell.getX(), cell.getY()).getActor().move(0, -1);
+                dy = -1;
                 break;
             case "DOWN":
-                logic.getCell(cell.getX(), cell.getY()).getActor().move(0, 1);
+                dy = 1;
                 break;
             case "LEFT":
-                logic.getCell(cell.getX(), cell.getY()).getActor().move(-1, 0);
+                dx = -1;
                 break;
             case "RIGHT":
-                logic.getCell(cell.getX(), cell.getY()).getActor().move(1, 0);
+                dx = 1;
                 break;
         }
+
+        logic.getCell(cell.getX(), cell.getY()).getActor().move(dx, dy);
+
     }
+
 
     private void skeletonMove() {
         String[] directions = {"UP", "DOWN", "LEFT", "RIGHT"};
@@ -109,6 +124,21 @@ public class UI {
             }
         }
     }
+
+
+    private void scheduleSkeletonMoves() {
+        skeletonTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                skeletonMove();
+                refresh();
+            }
+        }, 1000, 1000);
+    }
+
+
+
+
 
 
 }
