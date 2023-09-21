@@ -25,9 +25,11 @@ public class UI {
     private GraphicsContext context;
 
     private MainStage mainStage;
+    private StatusPane statusPane;
     private GameLogic logic;
     private Set<KeyHandler> keyHandlers;
     private Timer skeletonTimer;
+    private Button button;
 
 
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
@@ -39,13 +41,16 @@ public class UI {
         this.mainStage = new MainStage(canvas);
         this.keyHandlers = keyHandlers;
         this.skeletonTimer = new Timer();
-        scheduleSkeletonMoves();
+        this.statusPane = mainStage.getStatusPane();
+        this.button = new Button();
+
     }
 
     public void setUpPain(Stage primaryStage) {
         Scene scene = mainStage.getScene();
         primaryStage.setScene(scene);
         logic.setup();
+        scheduleSkeletonMoves();
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
     }
@@ -59,10 +64,6 @@ public class UI {
     }
 
     public void refresh() {
-        if(logic.getMap().getPlayer().getHealth() <=0 ) {
-            restartGame();
-            return;
-        }
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < logic.getMapWidth(); x++) {
@@ -80,11 +81,6 @@ public class UI {
         mainStage.setHealthLabelText(logic.getPlayerHealth());
         mainStage.setStrengthLabelText(logic.getPlayerStrength());
         mainStage.setInventoryLabelText(logic.getInventory());
-    }
-
-    public void restartGame() {
-        logic.resetGame();
-        refresh();
     }
 
     private void skeletonMove(String direction, Cell cell) {

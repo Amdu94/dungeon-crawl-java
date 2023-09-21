@@ -37,4 +37,8 @@ public class MainStage {
     public void setInventoryLabelText(String text) {
         this.statusPane.setInventoryValue(text);
     }
+
+    public StatusPane getStatusPane() {
+        return statusPane;
+    }
 }
