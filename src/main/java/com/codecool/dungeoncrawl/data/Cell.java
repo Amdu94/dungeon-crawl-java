@@ -1,6 +1,9 @@
 package com.codecool.dungeoncrawl.data;
 
 import com.codecool.dungeoncrawl.data.actors.Actor;
+import com.codecool.dungeoncrawl.data.actors.Monster;
+import com.codecool.dungeoncrawl.data.actors.Player;
+import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.data.items.Item;
 
 public class Cell implements Drawable {
@@ -66,4 +69,21 @@ public class Cell implements Drawable {
     public void removeItem() {
         item = null;
     }
+
+    public boolean isAvailable() {
+        return this.getType().equals(CellType.FLOOR) || this.isItem();
+    }
+
+    public boolean isEnemy() {
+        return this.actor instanceof Skeleton || this.actor instanceof Monster;
+    }
+
+    public boolean isPlayer() {
+        return this.actor instanceof Player;
+    }
+
+    public boolean isItem() {
+        return this.type.equals(CellType.SWORD) || this.type.equals(CellType.KEY);
+    }
+
 }
