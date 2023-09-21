@@ -21,6 +21,10 @@ public class GameLogic {
     public void setup() {
     }
 
+    public void resetGame() {
+        this.map = MapLoader.loadMap();
+    }
+
     public Cell getCell(int x, int y) {
         return map.getCell(x, y);
     }
