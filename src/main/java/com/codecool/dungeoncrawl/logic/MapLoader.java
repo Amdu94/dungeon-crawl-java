@@ -7,6 +7,7 @@ import com.codecool.dungeoncrawl.data.actors.Monster;
 import com.codecool.dungeoncrawl.data.actors.Player;
 import com.codecool.dungeoncrawl.data.actors.Skeleton;
 import com.codecool.dungeoncrawl.data.items.Key;
+import com.codecool.dungeoncrawl.data.items.Potion;
 import com.codecool.dungeoncrawl.data.items.Sword;
 import com.codecool.dungeoncrawl.data.items.Cans;
 
@@ -53,6 +54,10 @@ public class MapLoader {
                         case 'a':
                             cell.setType(CellType.FLOOR);
                             cell.setItem(new Cans(cell));
+                            break;
+                        case 'p':
+                            cell.setType(CellType.FLOOR);
+                            cell.setItem(new Potion(cell));
                             break;
                         case 'f':
                             cell.setType(CellType.FIRE);

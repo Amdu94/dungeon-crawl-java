@@ -9,7 +9,8 @@ public enum CellType {
     KEY("key"),
     SWORD("sword"),
     FIRE("fire"),
-    CAN("can");
+    CAN("can"),
+    POTION("potion");
 
 
     private final String tileName;
