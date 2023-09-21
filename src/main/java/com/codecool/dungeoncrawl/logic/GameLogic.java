@@ -7,7 +7,7 @@ public class GameLogic {
     private GameMap map;
 
     public GameLogic() {
-        this.map = MapLoader.loadMap();
+        this.map = MapLoader.loadMap("map.txt");
     }
 
     public double getMapWidth() {
@@ -21,8 +21,13 @@ public class GameLogic {
     public void setup() {
     }
 
-    public void resetGame() {
-        this.map = MapLoader.loadMap();
+    public void wonGame() {
+        this.map = MapLoader.loadMap("won.txt");
+        setup();
+    }
+    public void loseGame() {
+        this.map = MapLoader.loadMap("lose.txt");
+        setup();
     }
 
     public Cell getCell(int x, int y) {

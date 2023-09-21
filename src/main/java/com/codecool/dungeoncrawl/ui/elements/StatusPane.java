@@ -10,12 +10,12 @@ public class StatusPane {
     public static final int RIGHT_PANEL_WIDTH = 200;
     public static final int RIGHT_PANEL_PADDING = 10;
     private GridPane ui;
-    private Label healthTextLabel;
-    private Label healthValueLabel;
-    private Label strengthTextLabel;
-    private Label strengthValueLabel;
-    private Label inventoryTextLabel;
-    private Label inventoryValueLabel;
+    private final Label healthTextLabel;
+    private final Label healthValueLabel;
+    private final Label strengthTextLabel;
+    private final Label strengthValueLabel;
+    private final Label inventoryTextLabel;
+    private final Label inventoryValueLabel;
 
     public StatusPane() {
         ui = new GridPane();
@@ -54,8 +54,4 @@ public class StatusPane {
     }
     public void setInventoryValue(String text) {inventoryValueLabel.setText(text); }
 
-    public void setButton(Button button) {
-        ui.add(button, 0, 3);
-        button.setText("Restart");
-    }
 }
