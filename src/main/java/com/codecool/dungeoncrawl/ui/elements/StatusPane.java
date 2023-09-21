@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.ui.elements;
 
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -52,4 +53,9 @@ public class StatusPane {
         strengthValueLabel.setText(text);
     }
     public void setInventoryValue(String text) {inventoryValueLabel.setText(text); }
+
+    public void setButton(Button button) {
+        ui.add(button, 0, 3);
+        button.setText("Restart");
+    }
 }
