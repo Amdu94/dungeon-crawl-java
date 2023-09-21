@@ -43,7 +43,10 @@ public abstract class Actor implements Drawable {
     }
 
     private void putOutFire(Cell cell) {
-        cell.setType(CellType.FLOOR);
+        if (cell.getType() == CellType.FIRE){
+            cell.setType(CellType.FLOOR);
+        }
+
     }
 
     private void healthAfterFight(Actor actor) {
