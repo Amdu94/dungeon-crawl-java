@@ -27,11 +27,9 @@ public class UI {
     private GraphicsContext context;
 
     private MainStage mainStage;
-    private StatusPane statusPane;
     private GameLogic logic;
     private Set<KeyHandler> keyHandlers;
     private Timer skeletonTimer;
-    private Button button;
 
 
     public UI(GameLogic logic, Set<KeyHandler> keyHandlers) {
@@ -43,8 +41,6 @@ public class UI {
         this.mainStage = new MainStage(canvas);
         this.keyHandlers = keyHandlers;
         this.skeletonTimer = new Timer();
-        this.statusPane = mainStage.getStatusPane();
-        this.button = new Button();
 
     }
 
@@ -55,6 +51,7 @@ public class UI {
         scheduleSkeletonMoves();
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
+
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
@@ -66,6 +63,13 @@ public class UI {
     }
 
     public void refresh() {
+
+        if(logic.getMap().getPlayer().getHealth() <= 0){
+            logic.loseGame();
+        }
+        else if (logic.getMap().getCell(logic.getMap().getPlayer().getX(), logic.getMap().getPlayer().getY()).isOpenDoor()){
+            logic.wonGame();
+        }
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < logic.getMapWidth(); x++) {
@@ -133,14 +137,6 @@ public class UI {
             }
         }, 1000, 1000);
     }
-
-
-    public void restartGame(Button button) {
-            statusPane.setButton(button);
-            button.setText("Restart");
-
-    }
-
 
 
 }

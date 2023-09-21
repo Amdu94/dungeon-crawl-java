@@ -86,4 +86,7 @@ public class Cell implements Drawable {
         return this.type.equals(CellType.SWORD) || this.type.equals(CellType.KEY);
     }
 
+    public boolean isOpenDoor() {
+        return this.type.equals(CellType.OPENEDDOOR);
+    }
 }

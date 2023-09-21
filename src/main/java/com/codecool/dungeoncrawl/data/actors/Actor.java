@@ -19,20 +19,6 @@ public abstract class Actor implements Drawable {
         this.cell = cell;
         this.cell.setActor(this);
     }
-
-//    public void move(int dx, int dy) {
-//        Cell nextCell = cell.getNeighbor(dx, dy);
-//        if ((nextCell.getType() == CellType.KEY || nextCell.getType() == CellType.SWORD || nextCell.getType() == CellType.FLOOR || nextCell.getType() == CellType.OPENEDDOOR) && nextCell.getActor() == null) {
-//            cell.setActor(null);
-//            nextCell.setActor(this);
-//            cell = nextCell;
-//        } else if ((nextCell.getType() == CellType.CLOSEDDOOR && cell.getActor().isHasKey())) {
-//            openDoor(nextCell);
-//        } else if (nextCell.getActor() != null) {
-//            fightMonster(nextCell);
-//        }
-//    }
-
     public void move(int dx, int dy) {
 
         Cell nextCell = cell.getNeighbor(dx, dy);
