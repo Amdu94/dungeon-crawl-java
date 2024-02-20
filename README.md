@@ -127,6 +127,8 @@ Contributions are what make the open-source community such an amazing place to l
 <!-- CONTACT -->
 ## Contact
 
+Adam Dulai - [GitHub Profile](https://github.com/Amdu94)
+
 Lajos Daniel Savoly - [GitHub Profile](https://github.com/SavolyLali)
 
 Project Link: [https://github.com/Amdu94/dungeon-crawl-java](https://github.com/Amdu94/dungeon-crawl-java)
