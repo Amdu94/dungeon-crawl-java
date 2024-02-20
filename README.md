@@ -1,119 +1,150 @@
+<a name="readme-top"></a>
 
-# Dungeon Crawl
 
-## Story
+<!-- PROJECT SHIELDS -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-[Roguelikes](https://en.wikipedia.org/wiki/Roguelike) are one of the oldest
-types of video games. The earliest ones were made in the 70s, and they were inspired
-a lot by tabletop RPGs. Roguelikes usually have the following features in common.
 
-- They are tile-based.
-- The game is divided into turns, that is, you take one action, then the other
-  entities (monsters, allies, and so on, controlled by the CPU) take one.
-- The task is usually to explore a labyrinth and retrieve some treasure from its
-  bottom.
-- They feature permadeath: if you die, it's game over, you need to start from the
-  beginning again.
-- They rely heavily on procedural generation: Levels, monster placement, items, and so on
-  are randomized, so the game does not get boring.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <h3 align="center">Dungeon Crawl Java</h3>
 
-Your task is to create a roguelike. You can deviate from the rules above,
-the important bit is that it should be fun.
+  <p align="center">
+    A dungeon crawling game implemented in Java using JavaFX.
+    <br />
+    <a href="https://github.com/Amdu94/dungeon-crawl-java"><strong>Explore the repository »</strong></a>
+    <br />
+    <br />
+  </p>
+</div>
 
-## What are you going to learn?
 
-- Get more practice in OOP.
-- Understand design patterns: layer separation. (All of the game logic, such as player
-  movement, game rules, and so on), is in the `logic` package, completely
-  independent of user interface code. In principle, you could implement a
-  completely different interface, such as terminal, web, Virtual Reality, and so on, for
-  the same logic code.)
 
-## Tasks
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-1. Analyze the project\
-   Understand the existing code, classes, and tests so you can make changes. Do this before planning anything else. It helps you understand what is going on.
-   - A plan is created with task lists.
 
-2. Restrict movement\
-   Create a game logic which restricts the movement of the player so they cannot run into walls and monsters.
-    - The hero is not able to move into walls.
-    - The hero is not able to move into monsters.
 
-3. Dungeon items\
-There are items lying around the dungeon. They are visible in the GUI. 
-   - There are at least two item types, such as a key and a sword.
-   - There can be one item in a map square.
-   - A player can stand on the same square as an item.
-   - The item must be displayed on screen (unless somebody stands on the same square).
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-4. Pick up items\
-Create a feature that allows the hero to pick up an item.
-   - There is a way to pick up items.
-   - After the player picks up the item, the item the hero is standing on is gone from map.
+Dungeon Crawl Java is a text-based dungeon crawling game implemented in Java using JavaFX for the user interface.
 
-5. Show picked up items\
-   Show picked up items in the inventory list.
-   - There is an `Inventory` list on the screen.
-   - After the hero picks up an item, it appears in the inventory.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-6. Attack monsters\
-   Make the hero able to attack monsters by moving into them.
-   - Attacking a monster removes 5 health points. If the health of a monster goes below 0, it dies and disappears.
-   - If the hero attacks a monster and it does not die, it also attacks the hero at the same time (it only removes 2 health points).
-   - Having a weapon increases attack strength.
-   - Different monsters have different health and attack strengths.
 
-7. Doors and keys\
-   Create doors in the dungeon that are opened using keys.
-   - There are two new square types, closed door and open door.
-   - The hero cannot pass through a closed door unless there is a key in the inventory. After moving through, the closed door becomes an open door.
 
-8. Different monsters\
-   Create three different monster types with different behaviors.
-    - There are at least three different monster types with different behaviors.
-    - One type of monster does not move at all.
-    - One type of monster moves randomly. It cannot go trough walls or open doors.
+### Built With
 
-9. **OPTIONAL TASK:** Better movement AI\
-   Create a more sophisticated movement AI.
-    - One type of monster moves around randomly and teleports to a random free square every few turns.
-    - A custom movement logic is implemented (such as Ghosts that can move trough walls, or a monster that chases the player).
+* [![Java][Java-url]][Java.com]
+* [![JavaFX][JavaFX-url]][JavaFX.io]
 
-10. More map features\
-    Create maps that have more varied scenery. Take a look at the tile sheet (tiles.png). Get inspired!
-    - At least three more tiles are used. These can be more monsters, items, or background. At least one of them must be not purely decorative, but have some effect on gameplay.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-11. **OPTIONAL TASK:** Character name\
-    Allow the player to set a name for the character. This name can also function as a cheat code.
-    - There is a `Name` label and text field on the screen.
-    - If the name given is one of the game developers' name, the player can walk through walls.
 
-12. Implement more levels\
-    Add the possibility to add more levels.
-    - There are at least two levels.
-    - There is a square type "stairs down". Entering this square moves the player to a different map.
 
-13. Levels are bigger than the window.\
-    Implement bigger levels than the game window.
-    - Levels are larger than the game window (for example three screens wide and three screens tall).
-    - When the player moves, the player character stays in the center of the view.
+<!-- GETTING STARTED -->
+## Getting Started
 
-## Hints
-- Start with the smaller tasks, and then move into the more difficult ones.
-- Make sure you understand the whole starting code before making any changes.
+This section provides instructions on setting up the project locally.
 
-- Open the project in IntelliJ IDEA. This is a Maven project, so you need to
-  open `pom.xml`. The project uses JavaFX, so use the `javafx` Maven plugin to
-  build and run the program. Build using `mvn javafx:compile`, and run using `mvn javafx:run`.
-- Do not delve into JavaFX technicalities too much, most of the GUI is ready.
+### Prerequisites
 
-## Background materials
-- :book-open: [RogueBasin, a wiki with lots of resources on Roguelike creation](http://roguebasin.com/index.php?title=Articles)
-- :exclamation-circle: [Basics of OOP](pages/oop/basics-of-object-oriented-programming.md)
+* Java
+* JavaFX
 
-- :exclamation-circle: [How to design classes](pages/java/how-to-design-classes.md)
-- :book-open: [JavaFX](https://en.wikipedia.org/wiki/JavaFX)
-- :book-open: [JavaFX Tutorial](http://tutorials.jenkov.com/javafx/index.html)
+### Installation
 
-- [1-Bit Pack by Kenney](https://kenney.nl/assets/bit-pack)
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Amdu94/dungeon-crawl-java.git
+   ```
+2. Compile and run using your preferred IDE or command line tools supporting Java and JavaFX.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- USAGE -->
+## Usage
+
+Use the arrow keys to navigate and interact with the game world.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [ ] Add more levels and challenges
+- [ ] Implement additional monsters and items
+- [ ] Improve game mechanics and user interface
+
+See the [open issues](https://github.com/Amdu94/dungeon-crawl-java/issues) for a list of proposed features (and known issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- CONTACT -->
+## Contact
+
+Lajos Daniel Savoly - [GitHub Profile](https://github.com/SavolyLali)
+
+Project Link: [https://github.com/Amdu94/dungeon-crawl-java](https://github.com/Amdu94/dungeon-crawl-java)
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/Amdu94/dungeon-crawl-java.svg?style=for-the-badge
+[contributors-url]: https://github.com/Amdu94/dungeon-crawl-java/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Amdu94/dungeon-crawl-java.svg?style=for-the-badge
+[forks-url]: https://github.com/Amdu94/dungeon-crawl-java/network/members
+[stars-shield]: https://img.shields.io/github/stars/Amdu94/dungeon-crawl-java.svg?style=for-the-badge
+[stars-url]: https://github.com/Amdu94/dungeon-crawl-java/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Amdu94/dungeon-crawl-java.svg?style=for-the-badge
+[issues-url]: https://github.com/Amdu94/dungeon-crawl-java/issues
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/lajos-daniel-savoly/
+[JavaFX-url]: https://img.shields.io/badge/JavaFX-007396?style=for-the-badge&logo=java&logoColor=white
+[JavaFX.io]: https://openjfx.io/
+[Java-url]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
+[Java.com]: https://www.java.com/
