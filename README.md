@@ -145,7 +145,7 @@ Project Link: [https://github.com/Amdu94/dungeon-crawl-java](https://github.com/
 [issues-shield]: https://img.shields.io/github/issues/Amdu94/dungeon-crawl-java.svg?style=for-the-badge
 [issues-url]: https://github.com/Amdu94/dungeon-crawl-java/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://www.linkedin.com/in/lajos-daniel-savoly/
+[linkedin-url]: https://www.linkedin.com/in/ádám-dulai/
 [JavaFX-url]: https://img.shields.io/badge/JavaFX-007396?style=for-the-badge&logo=java&logoColor=white
 [JavaFX.io]: https://openjfx.io/
 [Java-url]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
